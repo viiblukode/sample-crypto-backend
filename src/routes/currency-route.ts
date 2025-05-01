@@ -16,8 +16,9 @@ coinRoute.post('/populate',
     
     coinRoute.get('/list',
         async (req: Request, res: Response) => {
-            const type = req.query?.type as string;
-            const formattedQuery = type.toUpperCase() as unknown as CurrencyType;
+            const type = req.query?.type;
+            const hasTypeDefined = type ? type : 'all';
+            const formattedQuery = hasTypeDefined.toString().toUpperCase() as unknown as CurrencyType;
     
             const list = await getCurrencyList(formattedQuery);
     
@@ -28,6 +29,7 @@ coinRoute.post('/populate',
     coinRoute.get('/find',
     async (req: Request, res: Response) => {
         const search = req.query?.search as string;
+        console.log(`===> search: ${search}`);
     
         const searchResults = await searchCurrencyList(search);
     

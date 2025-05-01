@@ -71,8 +71,8 @@ export const searchCurrencyList = async (searchVal: string) => {
     const result = await CurrencyInfo.findAll({
         where: {
             [Op.or]: [
-               { id: { [Op.iLike]:`%${searchVal}%` }},
-               { name: { [Op.iLike]: `%${searchVal}%` }}
+               { id: { [Op.iLike]:`${searchVal}%` }},
+               { name: { [Op.iLike]: `${searchVal}%` }}
             ]}
         }, 
     );
