@@ -72,7 +72,7 @@ export const searchCurrencyList = async (searchVal: string) => {
         where: {
             [Op.or]: [
                { id: { [Op.iLike]:`${searchVal}%` }},
-               { name: { [Op.iLike]: `${searchVal}%` }}
+               { name: { [Op.iLike]: `%${searchVal}%` }}
             ]}
         }, 
     );
